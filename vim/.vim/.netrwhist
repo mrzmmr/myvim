@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/Users/Paul1/Documents/node-time'
+let g:netrw_dirhist_2='/Users/Paul1/Documents/Git/node-boiler'
+let g:netrw_dirhist_3='/Users/Paul1/Documents/Git/C/c-dictionary/test'
+let g:netrw_dirhist_4='/Users/Paul1/Downloads/code/make'
+let g:netrw_dirhist_5='/Users/Paul1'
