@@ -3,15 +3,16 @@
 ### Included is :
 - vim
   - bundle
+    - Cpp11-Syntax-Support
+    - DoxygenToolkit.vim
+    - YouCompleteMe
     - goyo.vim
-    - syntastic
-    - tabular
+    - limelight.vim
+    - nerdtree
+    - rust.vim
     - vim-cpp-enhanced-highlight
-    - vim-gitgutter
-    - vim-jade
-    - vim-json
-    - vim-stylus
+    - vim-iawriter
     - vim-syntax-extra
-    - yajs.vim
-    - pathogen
+  - autoload
+    - pathogen.vim
 - vimrc
