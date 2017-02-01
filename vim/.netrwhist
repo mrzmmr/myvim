@@ -1,5 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/Users/Paul1/.vim'
-let g:netrw_dirhist_2='/Users/Paul1/.vimr'
-let g:netrw_dirhist_3='/Users/Paul1/Desktop/projects/Val/src/test'
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/Users/Paul/Desktop/produce-package-keywords/src'
+let g:netrw_dirhist_2='/Users/Paul/Desktop/produce-package-keywords'
+let g:netrw_dirhist_3='/Users/Paul/Desktop/produce-package-keywords/src'
+let g:netrw_dirhist_4='/Users/Paul/tmp/test-unist/node_modules'
+let g:netrw_dirhist_5='/Users/Paul/Desktop/produce-package-keywords/src/test'
