@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/Users/Paul/Desktop/cull-comments-2'
+let g:netrw_dirhist_2='/Users/Paul/Desktop/cull-keywords/.git'
+let g:netrw_dirhist_3='/Users/Paul/.hyper_plugins/local'
+let g:netrw_dirhist_4='/Users/Paul/.hyper_plugins'
+let g:netrw_dirhist_5='/Users/Paul/Learning/learn-react/react-app/public'
+let g:netrw_dirhist_6='/Users/Paul'
+let g:netrw_dirhist_7='/Users/Paul/tmp/test-nextjs/pages'
+let g:netrw_dirhist_8='/Users/Paul/Desktop/viewer'
+let g:netrw_dirhist_9='/Users/Paul/Desktop/viewer/test'
