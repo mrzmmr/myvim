@@ -1,148 +1,170 @@
-" Set up Pathogen
-execute pathogen#infect()
+" Setup NeoBundle
+  let bundleExists = 1
+  if (!isdirectory(expand("$HOME/.nvim/bundle/neobundle.vim")))
+    call system(expand("mkdir -p $HOME/.nvim/bundle"))
+    call system(expand("git clone https://github.com/Shougo/neobundle.vim ~/.nvim/bundle/neobundle.vim"))
+    let bundleExists = 0
+  endif
+
+  if 0 | endif
+
+  if has('vim_starting')
+    if &compatible
+      set nocompatible
+    endif
+
+" Required:
+    set runtimepath+=~/.nvim/bundle/neobundle.vim/
+    set runtimepath+=~/.nvim/bundle/bolt.vim/
+  endif
+
+" Required:
+  call neobundle#begin(expand('~/.nvim/bundle/'))
+
+" Required:
+  NeoBundleFetch 'Shougo/neobundle.vim'
+
+" Setup indents
+  set expandtab
+  set shiftwidth=2
+  set softtabstop=2
+
+" Remap esc key
+  inoremap EE <Esc>
+
+" Syntax
+  NeoBundle 'othree/yajs.vim'
+  NeoBundle 'kern/vim-es7'
+  NeoBundle 'hail2u/vim-css3-syntax'
+  NeoBundle 'moll/vim-node'
+  NeoBundle '1995eaton/vim-better-javascript-completion'
+  NeoBundle 'vim-scripts/SyntaxComplete'
+  NeoBundle 'othree/javascript-libraries-syntax.vim'
+  NeoBundleLazy 'elzr/vim-json', {'autoload':{'filetypes':['json']}}
+  NeoBundle 'tpope/vim-markdown'
+  NeoBundle 'suan/vim-instant-markdown'
+  NeoBundle 'othree/es.next.syntax.vim'
+
+  NeoBundle 'rust-lang/rust.vim'
+
+  NeoBundle 'vimlab/split-term.vim'
+
+ " colorscheme & syntax highlighting
+  NeoBundle 'mhartington/oceanic-next'
+  NeoBundle 'tomasr/molokai'
+  NeoBundle 'Yggdroot/indentLine'
+  NeoBundle 'Raimondi/delimitMate'
+  NeoBundle 'valloric/MatchTagAlways'
+  NeoBundle 'hzchirs/vim-material'
+  NeoBundle 'crusoexia/vim-monokai'
+  NeoBundle 'rakr/vim-one'
+
+  NeoBundle 'billyvg/tigris.nvim'
+
+ " git helpers
+  NeoBundle 'tpope/vim-fugitive'
+  NeoBundle 'airblade/vim-gitgutter'
+  NeoBundle 'Xuyuanp/nerdtree-git-plugin'
+
+ " utils
+  NeoBundle 'benekastah/neomake'
+  NeoBundle 'editorconfig/editorconfig-vim'
+  NeoBundle 'scrooloose/nerdtree'
+  NeoBundle 'AndrewRadev/switch.vim'
+  NeoBundle 'tpope/vim-surround'
+  NeoBundle 'tomtom/tcomment_vim'
+  NeoBundle 'mattn/emmet-vim'
+  NeoBundle 'Chiel92/vim-autoformat'
+  NeoBundle 'gorodinskiy/vim-coloresque'
+  NeoBundle 'MarcWeber/vim-addon-mw-utils'
+  NeoBundle 'tomtom/tlib_vim'
+  NeoBundle 'garbas/vim-snipmate'
+  NeoBundle 'honza/vim-snippets'
+
+ " shougo stuff
+  NeoBundle 'Shougo/unite.vim'
+  NeoBundle 'Shougo/deoplete.nvim'
+  NeoBundle 'Shougo/neco-vim'
+  NeoBundle 'Shougo/neoinclude.vim'
+  NeoBundle 'Shougo/neosnippet.vim'
+  NeoBundle 'Shougo/neosnippet-snippets'
+
+  NeoBundle 'wincent/terminus'
+
+  call neobundle#end()
+
+  let g:one_allow_italics=1
+  colorscheme one
+  set background=dark
+
+  if (empty($TMUX))
+    if (has('nvim'))
+      let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+    endif
+    if (has('termguicolors'))
+      set termguicolors
+    endif
+  endif
 
 
-inoremap EE <Esc>
+" Required:
+  filetype plugin indent on
+  filetype plugin on
+  set omnifunc=syntaxcomplete#Complete
 
+  NeoBundleCheck
+  if bundleExists == 0
+    echo "Installing bundles, ignore errors"
+  endif
 
-" Don't try to be vi compatible
-set nocompatible
+" System Settings
+  set termguicolors
+  set noshowmode
+  set noswapfile
+  filetype on
+  set relativenumber number
+  set tabstop=2 shiftwidth=2 expandtab
+  set conceallevel=0
+  set wildmenu
+  set laststatus=2
+  set wrap linebreak nolist
+  set wildmode=full
+  let mapleader = ','
+  set undofile
+  set undodir="$HOME/.VIM_UNDO_FILES"
+  let g:jsx_ext_required = 0
 
+  autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
+  autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
 
-" Helps force plugins to load correctly when it is turned back on below
-filetype off
+  let g:unit_source_codesearch_command = '$HOME/bin/csearch'
+  let g:table_mode_corner='|'
 
+" #Neosnippet #deoplete
+  imap <C-k> <Plug>(neosnippet_expand_or_jump)
+  smap <C-k> <Plug>(neosnippet_expand_or_jump)
+  xmap <C-k> <Plug>(neosnippet_expand_target)
 
-" TODO: Load plugins here (pathogen or vundle)
+  imap <C-k> <Plug>(neosnippet_expand_or_jump)
+  imap <expr><tab>
+    \ pumvisible() ? "\<C-n>" :
+    \ neosnippet#expandable_or_jumpable() ?
+    \   "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
 
-" Turn on syntax highlighting
-syntax on
+  smap <expr><TAB> neosnippet#mappings#expandable_or_jumpable() ?
+    \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
+  if has('conceal')
+    set conceallevel=2 concealcursor=niv
+  endif
 
-" For plugins to load correctly
-filetype plugin indent on
+" Enable snipMate compatibility feature.
+  let g:neosnippet#enable_snipmate_compatibility = 1
 
+  let g:deoplete#enable_at_startup = 1
 
-let mapleader = ","
-
-" Security
-set modelines=0
-
-
-" Show line numbers
-set number
-
-
-" Show file stats
-set ruler
-
-
-" Blink cursor on error instead of beeping (grr)
-set visualbell
-
-
-" Encoding
-set encoding=utf-8
-
-
-" Whitespace
-set wrap
-set textwidth=79
-set formatoptions=tcqrn1
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set expandtab
-set noshiftround
-
-
-" Cursor motion
-set scrolloff=3
-set backspace=indent,eol,start
-set matchpairs+=<:> " use % to jump between pairs
-runtime! macros/matchit.vim
-
-
-" Move up/down editor lines
-nnoremap j gj
-nnoremap k gk
-
-
-" Allow hidden buffers
-set hidden
-
-
-" Rendering
-set ttyfast
-
-
-" Status bar
-set laststatus=2
-
-
-" Last line
-set showmode
-set showcmd
-
-
-" Searching
-nnoremap / /\v
-vnoremap / /\v
-set hlsearch
-set incsearch
-set ignorecase
-set smartcase
-set showmatch
-map <leader><space> :let @/=''<cr> " clear search
-
-
-" Remap help key.
-inoremap <F1> <ESC>:set invfullscreen<CR>a
-nnoremap <F1> :set invfullscreen<CR>
-vnoremap <F1> :set invfullscreen<CR>
-
-
-" Textmate holdouts
-
-
-" Formatting
-map <leader>q gqip
-
-
-" Visualize tabs and newlines
-set listchars=tab:▸\ ,eol:¬
-" Uncomment this to enable by default:
-" set list " To enable by default
-" Or use your leader key + l to toggle on/off
-map <leader>l :set list!<CR> " Toggle tabs and EOL
-
-
-" Color scheme (terminal)
-set t_Co=256
-let g:solarized_termcolors=256
-let g:solarized_termtrans=1
-
-
-" Coloring
-color primary
-set background=light
-hi Normal ctermbg=none ctermfg=243
-hi Comment ctermfg=68
-
-" Set up line wrap highlighting
-highlight OverLength ctermbg=red ctermfg=white
-highlight LineNr ctermbg=none
-match OverLength /\%80v.\+/
-
-let g:used_javascript_libs = 'underscore,react,flux'
-
-
-" nerdcommenter
-let g:NERDSpaceDelims = 1
-
-
-" Syntastic settings
-let g:syntastic_javascript_checkers = ['babel-eslint', 'flow']
-let g:syntastic_javascript_eslint_exec = 'eslint_d'
-let g:syntastic_javascript_flow_exe = 'flow'
-let g:syntastic_aggregate_errors = 1
+" Highlights
+"  autocmd FileType * hi Normal ctermbg=none guibg=none guifg=#6C7A89
+  autocmd FileType * hi Comment ctermfg=240 guifg=#b0bec5
+  autocmd FileType * hi LineNr ctermbg=none guibg=none
+  hi Cursor cterm=reverse gui=reverse
