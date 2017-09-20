@@ -32,6 +32,10 @@
 " Remap esc key
   inoremap EE <Esc>
 
+autocmd BufNewFile,BufRead .*rc set filetype=javascript
+autocmd BufNewFile,BufRead *.gyp set filetype=json
+autocmd BufNewFile,BufRead *webpack.config set filetype=javascript
+
 " Syntax
   NeoBundle 'othree/yajs.vim'
   NeoBundle 'kern/vim-es7'
@@ -44,6 +48,13 @@
   NeoBundle 'tpope/vim-markdown'
   NeoBundle 'suan/vim-instant-markdown'
   NeoBundle 'othree/es.next.syntax.vim'
+  NeoBundle 'wavded/vim-stylus'
+  NeoBundle 'digitaltoad/vim-pug'
+  NeoBundle 'dNitro/vim-pug-complete'
+  NeoBundle 'gregsexton/Atom'
+  NeoBundle 'endel/vim-github-colorscheme'
+  NeoBundle 'NLKNguyen/papercolor-theme'
+  NeoBundle 'ayu-theme/ayu-vim'
 
   NeoBundle 'rust-lang/rust.vim'
 
@@ -94,8 +105,10 @@
   call neobundle#end()
 
   let g:one_allow_italics=1
-  colorscheme one
-  set background=dark
+
+  set termguicolors
+  let ayucolor="light"
+  colorscheme ayu
 
   if (empty($TMUX))
     if (has('nvim'))
@@ -121,6 +134,7 @@
   set termguicolors
   set noshowmode
   set noswapfile
+  set ruler
   filetype on
   set relativenumber number
   set tabstop=2 shiftwidth=2 expandtab

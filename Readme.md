@@ -1,7 +1,6 @@
 # My Vim stuff
 ===
 
-
 ### Packages:
 ===
 
